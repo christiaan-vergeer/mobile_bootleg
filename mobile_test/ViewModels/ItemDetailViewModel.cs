@@ -11,7 +11,7 @@ namespace mobile_test.ViewModels
     {
         private string itemId;
         private string text;
-        private string description;
+        private int description;
         public string Id { get; set; }
 
         public string Text
@@ -20,7 +20,7 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref text, value);
         }
 
-        public string Description
+        public int Description
         {
             get => description;
             set => SetProperty(ref description, value);
@@ -45,8 +45,8 @@ namespace mobile_test.ViewModels
             {
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                Text = item.firstname;
+                Description = item.age;
             }
             catch (Exception)
             {

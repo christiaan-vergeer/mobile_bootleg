@@ -10,7 +10,7 @@ namespace mobile_test.ViewModels
     public class NewItemViewModel : BaseViewModel
     {
         private string text;
-        private string description;
+        private int description;
 
         public NewItemViewModel()
         {
@@ -22,8 +22,8 @@ namespace mobile_test.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(text);
+                //&& !String.IsNullOrWhiteSpace(description);
         }
 
         public string Text
@@ -32,7 +32,7 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref text, value);
         }
 
-        public string Description
+        public int Description
         {
             get => description;
             set => SetProperty(ref description, value);
@@ -52,8 +52,8 @@ namespace mobile_test.ViewModels
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
+                firstname = Text,
+                age = Description
             };
 
             await DataStore.AddItemAsync(newItem);

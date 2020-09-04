@@ -14,13 +14,13 @@ namespace mobile_test.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "7th item", Description="this is my own test"}
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "harry", age=24 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "jan", age=18 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "emma", age=34 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "emalien", age=17 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "jarols", age=23 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "bart", age=23 },
+                new Item { Id = Guid.NewGuid().ToString(), firstname = "maartje", age=18}
             };
         }
 

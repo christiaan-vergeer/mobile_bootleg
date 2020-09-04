@@ -5,7 +5,14 @@ namespace mobile_test.Models
     public class Item
     {
         public string Id { get; set; }
-        public string Text { get; set; }
-        public string Description { get; set; }
+        public string firstname { get; set; }
+        public string middlename { get; set; }
+        public string lastname { get; set; }
+        public int age { get; set; }
+        public string adress { get; set; }
+        public string city { get; set; }
+
+       // public string Text { get; set; }
+        //public string Description { get; set; }
     }
 }
