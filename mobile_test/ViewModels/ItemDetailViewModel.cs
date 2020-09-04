@@ -10,20 +10,32 @@ namespace mobile_test.ViewModels
     public class ItemDetailViewModel : BaseViewModel
     {
         private string itemId;
-        private string text;
-        private int description;
+        private string fullname;
+        private int age;
+        private string adress;
+        private string city;
         public string Id { get; set; }
 
-        public string Text
+        public string Fullname
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => fullname;
+            set => SetProperty(ref fullname, value);
         }
 
-        public int Description
+        public int Age
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => age;
+            set => SetProperty(ref age, value);
+        }
+        public string Adress
+        {
+            get => adress;
+            set => SetProperty(ref adress, value);
+        }
+        public string City
+        {
+            get => city;
+            set => SetProperty(ref city, value);
         }
 
         public string ItemId
@@ -45,8 +57,10 @@ namespace mobile_test.ViewModels
             {
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Text = item.firstname;
-                Description = item.age;
+                Fullname = item.firstname + "" + item.middlename + "" + item.lastname;
+                Age = item.age;
+                Adress = item.adress;
+                City = item.city;
             }
             catch (Exception)
             {

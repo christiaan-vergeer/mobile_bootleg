@@ -11,6 +11,10 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Margin="40,10,40,200" Text="click to create an account"
+                        Command="{Binding gotocommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
