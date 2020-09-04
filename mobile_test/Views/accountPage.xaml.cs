@@ -1,4 +1,5 @@
-﻿using mobile_test.ViewModels;
+﻿using mobile_test.Models;
+using mobile_test.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +12,19 @@ namespace mobile_test.Views
 {
     public partial class accountPage : ContentPage
     {
-        accountPageViewModel _viewModel;
+        accountPageViewModel viewModel;
+
         public accountPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new accountPageViewModel();
+            BindingContext = viewModel = new accountPageViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            _viewModel.OnAppearing();
+            viewModel.OnAppearing();
         }
     }
 }

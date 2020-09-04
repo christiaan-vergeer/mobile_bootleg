@@ -5,7 +5,7 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:mobile_test.ViewModels"  
              xmlns:model="clr-namespace:mobile_test.Models"  
-             x:Name="BrowseItemsPage">
+             x:Name="BrowsePersonsPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

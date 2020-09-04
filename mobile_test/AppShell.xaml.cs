@@ -13,7 +13,7 @@ namespace mobile_test
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
-            Routing.RegisterRoute(nameof(accauntPage), typeof(accauntPage));
+            Routing.RegisterRoute(nameof(accountPage), typeof(accountPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

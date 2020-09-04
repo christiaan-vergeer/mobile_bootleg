@@ -1,7 +1,10 @@
 ﻿using mobile_test.Models;
+using mobile_test.Services;
+using mobile_test.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,72 +13,74 @@ namespace mobile_test.ViewModels
 {
     class accountPageViewModel : BaseViewModel
     {
-            private Person _selectedItem;
-            public Command LoadItemsCommand { get; }
-            public Command AddItemCommand { get; }
-            public Command<Item> ItemTapped { get; }
+        public Person _selectedPerson;
+        public ObservableCollection<Person> persons { get; }
+        public Command LoadPersonsCommand { get; }
+        public Command AddPersonCommand { get; }
+        public Command<Person> PersonTapped { get; }
 
-            public accountPageViewModel()
+        public accountPageViewModel()
+        {
+            Title = "People";
+            persons = new ObservableCollection<Person>();
+            LoadPersonsCommand = new Command(async () => await ExecuteLoadPersonsCommand());
+
+            PersonTapped = new Command<Person>(OnPersonSelected);
+
+            AddPersonCommand = new Command(OnAddPerson);
+        }
+
+        async Task ExecuteLoadPersonsCommand()
+        {
+            IsBusy = true;
+
+            try
             {
-                Title = "Browse";
-                LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-                ItemTapped = new Command<Item>(OnItemSelected);
-
-                AddItemCommand = new Command(OnAddItem);
-            }
-
-            async Task ExecuteLoadItemsCommand()
-            {
-                IsBusy = true;
-
-                try
+                persons.Clear();
+                var Persons = await IPersonMockDataStore.GetPersonsAsync(true);
+                foreach (var person in persons)
                 {
-                    Person.Clear();
-                    var items = await DataStore.GetItemsAsync(true);
-                    foreach (var item in items)
-                    {
-                        Person.Add(item);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex);
-                }
-                finally
-                {
-                    IsBusy = false;
+                    persons.Add(_selectedPerson);
                 }
             }
-
-            public void OnAppearing()
+            catch (Exception ex)
             {
-                IsBusy = true;
-                SelectedItem = null;
+                Debug.WriteLine(ex);
             }
-
-            public Item SelectedItem
+            finally
             {
-                get => _selectedItem;
-                set
-                {
-                    SetProperty(ref _selectedItem, value);
-                    OnItemSelected(value);
-                }
-            }
-
-            private async void OnAddItem(object obj)
-            {
-                await Shell.Current.GoToAsync(nameof(NewItemPage));
-            }
-
-            async void OnItemSelected(Item item)
-            {
-                if (item == null)
-                    return;
-
-                // This will push the ItemDetailPage onto the navigation stack
-                await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+                IsBusy = false;
             }
         }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+            SelectedPerson = null;
+        }
+
+        public Person SelectedPerson
+        {
+            get => _selectedPerson;
+            set
+            {
+                SetProperty(ref _selectedPerson, value);
+                OnPersonSelected(value);
+            }
+        }
+
+        private async void OnAddPerson(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(accountPage));
+        }
+
+        async void OnPersonSelected(Person person)
+        {
+            if (person == null)
+                return;
+
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(accountPage)}?{nameof(accountPageViewModel._selectedPerson)}={person.Id}");
+        }
+    }
 }
