@@ -13,6 +13,7 @@ namespace mobile_test.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IPerson<Person> PersonDataStore => DependencyService.Get<IPerson<Person>>();
 
         bool isBusy = false;
         public bool IsBusy
