@@ -23,5 +23,11 @@ namespace mobile_test.Views
             BindingContext = _viewModel = new accauntViewModel();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
+        }
+
     }
 }

@@ -10,75 +10,59 @@ using mobile_test.Views;
 
 namespace mobile_test.ViewModels
 {
-    public class accauntViewModel:BaseViewModel
+    public class accauntViewModel : BaseViewModel
     {
+        private Item _selectedItem;
 
-        private string itemId;
-        private string fullname;
-        private int age;
-        private string adress;
-        private string city;
+        public ObservableCollection<Item> Items { get; }
+        public Command LoadItemsCommand { get; }
+        public Command AddItemCommand { get; }
+        public Command<Item> ItemTapped { get; }
+
+        
         public string Id { get; set; }
-
-        public string Fullname
+       
+        public accauntViewModel()
         {
-            get => fullname;
-            set => SetProperty(ref fullname, value);
+            Title = "My Accaunt";
+            Items = new ObservableCollection<Item>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
-        public int Age
-        {
-            get => age;
-            set => SetProperty(ref age, value);
-        }
-        public string Adress
-        {
-            get => adress;
-            set => SetProperty(ref adress, value);
-        }
-        public string City
-        {
-            get => city;
-            set => SetProperty(ref city, value);
-        }
 
-        public string ItemId
+        async Task ExecuteLoadItemsCommand()
         {
-            get
-            {
-                return itemId;
-            }
-            set
-            {
-                itemId = value;
-                LoadItemId(value);
-            }
-        }
+            IsBusy = true;
 
-        public async void LoadItemId(string itemId)
-        {
             try
             {
+                Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
-                foreach (var Item in items)
+                foreach (var item in items)
                 {
-                    if(Item.useridentivier == 1)
+                    if(item.useridentivier == 1)
                     {
-                        Id = Item.Id;
-                        Fullname = Item.firstname + "" + Item.middlename + "" + Item.lastname;
-                        Age = Item.age;
-                        Adress = Item.adress;
-                        City = Item.city;
+                        Items.Add(item);
                     }
+                    
                 }
-                var item = await DataStore.GetItemAsync(itemId);
-                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
+
+        public async void OnAppearing()
+        {
+            IsBusy = true;
+            await ExecuteLoadItemsCommand();
+        }
+
 
         private async void gotoaccaunt()
         {

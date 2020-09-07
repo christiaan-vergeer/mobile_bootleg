@@ -64,7 +64,14 @@ namespace mobile_test.ViewModels
             {
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Fullname = item.firstname + "" + item.middlename + "" + item.lastname;
+                if (item.middlename == "")
+                {
+                    Fullname = item.firstname + " " + item.lastname;
+                }
+                else
+                {
+                    Fullname = item.firstname + "" + item.middlename + "" + item.lastname;
+                }
                 Age = item.age;
                 Adress = item.adress;
                 City = item.city;
