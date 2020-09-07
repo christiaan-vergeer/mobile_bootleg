@@ -7,6 +7,8 @@
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Name:" FontSize="Medium" />
         <Label Text="{Binding Fullname}" FontSize="Small"/>
+        <Label Text="test:" FontSize="Medium" />
+        <Label Text="{Binding Useridentivier}" FontSize="Small"/>
         <Label Text="Age:" FontSize="Medium" />
         <Label Text="{Binding Age}" FontSize="Small"/>
         <Label Text="Adress:" FontSize="Medium" />

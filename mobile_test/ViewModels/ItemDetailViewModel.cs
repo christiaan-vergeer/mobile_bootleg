@@ -14,7 +14,9 @@ namespace mobile_test.ViewModels
         private int age;
         private string adress;
         private string city;
+        public int useridentivier;
         public string Id { get; set; }
+        
 
         public string Fullname
         {
@@ -22,6 +24,11 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref fullname, value);
         }
 
+        public int Useridentivier
+        {
+            get => useridentivier;
+            set => SetProperty(ref useridentivier, value);
+        }
         public int Age
         {
             get => age;
@@ -61,6 +68,7 @@ namespace mobile_test.ViewModels
                 Age = item.age;
                 Adress = item.adress;
                 City = item.city;
+                Useridentivier = item.useridentivier;
             }
             catch (Exception)
             {

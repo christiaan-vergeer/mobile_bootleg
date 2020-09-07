@@ -12,6 +12,10 @@
             <Editor Text="{Binding Middlename, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <Label Text="Last Name" FontSize="Medium" />
             <Editor Text="{Binding Lastname, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Email" FontSize="Medium" />
+            <Editor Text="{Binding Email, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Password" FontSize="Medium" />
+            <Editor Text="{Binding Password, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <Label Text="Age" FontSize="Medium" />
             <Editor Text="{Binding Age, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <Label Text="Adress" FontSize="Medium" />

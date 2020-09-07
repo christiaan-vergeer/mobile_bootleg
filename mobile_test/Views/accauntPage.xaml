@@ -8,10 +8,19 @@
              x:Name="BrowseItemsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Margin="40,10,40,200" Text="click to create an account"
+            <StackLayout Spacing="20" Padding="15">
+                <Label Text="Name:" FontSize="Medium" />
+                <Label Text="{Binding Fullname}" FontSize="Small"/>
+                <Label Text="email:" FontSize="Medium" />
+                <Label Text="{Binding Email}" FontSize="Small"/>
+                <Label Text="Age:" FontSize="Medium" />
+                <Label Text="{Binding Age}" FontSize="Small"/>
+                <Label Text="Adress:" FontSize="Medium" />
+                <Label Text="{Binding Adress}" FontSize="Small"/>
+                <Label Text="City:" FontSize="Medium" />
+                <Label Text="{Binding City}" FontSize="Small"/>
+            </StackLayout>
+            <Button Margin="40,10,40,200" Text="click to update account"
                         Command="{Binding gotocommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using mobile_test.Models;
+using mobile_test.Views;
 using Xamarin.Forms;
 
 namespace mobile_test.ViewModels
@@ -12,13 +13,16 @@ namespace mobile_test.ViewModels
         private string firstname;
         private string middlename;
         private string lastname;
+        private string email;
+        private string password;
         private int age;
         private string adress;
         private string city;
+        private int useridentivier;
 
         public NewItemViewModel()
         {
-            SaveCommand = new Command(OnSave); //, ValidateSave
+            SaveCommand = new Command(OnSave, ValidateSave); 
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -28,6 +32,8 @@ namespace mobile_test.ViewModels
         {
             return !String.IsNullOrWhiteSpace(firstname)
                 && !String.IsNullOrWhiteSpace(lastname)
+                && !String.IsNullOrWhiteSpace(email)
+                && !String.IsNullOrWhiteSpace(password)
                 //&& !String.IsNullOrWhiteSpace(description);
                 && !String.IsNullOrWhiteSpace(adress)
                 && !String.IsNullOrWhiteSpace(city);
@@ -50,6 +56,18 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref lastname, value);
         }
 
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+
+        public string Password
+        {
+            get => password;
+            set => SetProperty(ref password, value);
+        }
+
         public int Age
         {
             get => age;
@@ -68,6 +86,13 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref city, value);
         }
 
+        public int Useridentivier
+        {
+            get => useridentivier;
+            set => SetProperty(ref useridentivier, value);
+        }
+
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -85,15 +110,19 @@ namespace mobile_test.ViewModels
                 firstname = firstname,
                 middlename = middlename,
                 lastname = lastname,
+                email = email,
+                password = password,
                 age = age,
                 adress = adress,
-                city = city
+                city = city,
+                useridentivier = 1 
             };
 
             await DataStore.AddItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            //await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
         }
     }
 }

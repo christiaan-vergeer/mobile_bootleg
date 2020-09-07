@@ -14,11 +14,12 @@ namespace mobile_test
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new AppShell();  
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            await Shell.Current.GoToAsync("//LoginPage");
         }
 
         protected override void OnSleep()
