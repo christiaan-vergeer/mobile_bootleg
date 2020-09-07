@@ -8,13 +8,14 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using mobile_test.ViewModels;
 
 namespace mobile_test.ViewModels
 {
     class accountPageViewModel : BaseViewModel
     {
         public Person _selectedPerson;
-        public ObservableCollection<Person> persons { get; }
+        public ObservableCollection<Person> Persons { get; }
         public Command LoadPersonsCommand { get; }
         public Command AddPersonCommand { get; }
         public Command<Person> PersonTapped { get; }
@@ -22,7 +23,7 @@ namespace mobile_test.ViewModels
         public accountPageViewModel()
         {
             Title = "People";
-            persons = new ObservableCollection<Person>();
+            Persons = new ObservableCollection<Person>();
             LoadPersonsCommand = new Command(async () => await ExecuteLoadPersonsCommand());
 
             PersonTapped = new Command<Person>(OnPersonSelected);
@@ -36,11 +37,11 @@ namespace mobile_test.ViewModels
 
             try
             {
-                persons.Clear();
-                var Persons = await IPersonMockDataStore.GetPersonsAsync(true);
+                Persons.Clear();
+                var persons = await PersonDataStore.GetPersonsAsync(true);
                 foreach (var person in persons)
                 {
-                    persons.Add(_selectedPerson);
+                    Persons.Add(person);
                 }
             }
             catch (Exception ex)
@@ -52,7 +53,6 @@ namespace mobile_test.ViewModels
                 IsBusy = false;
             }
         }
-
         public void OnAppearing()
         {
             IsBusy = true;
@@ -71,7 +71,7 @@ namespace mobile_test.ViewModels
 
         private async void OnAddPerson(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(accountPage));
+            await Shell.Current.GoToAsync(nameof(NewPerson));
         }
 
         async void OnPersonSelected(Person person)
@@ -79,8 +79,7 @@ namespace mobile_test.ViewModels
             if (person == null)
                 return;
 
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(accountPage)}?{nameof(accountPageViewModel._selectedPerson)}={person.Id}");
+            await Shell.Current.GoToAsync($"{nameof(PersonalDetail)}?{nameof(PersonDetailViewModel.PersonId)}={person.Id}");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace mobile_test
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<IPerson>();
             MainPage = new AppShell();
         }
 

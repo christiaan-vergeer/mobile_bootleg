@@ -26,6 +26,7 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref description, value);
         }
 
+
         public string ItemId
         {
             get

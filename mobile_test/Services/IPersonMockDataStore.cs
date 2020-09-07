@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace mobile_test.Services
 {
-    public class IPersonMockDataStore : IPerson<Person>
+    public class IPerson : IPerson<Person>
     {
         readonly List<Person> persons;
 
-        public IPersonMockDataStore()
+        public IPerson()
         {
             persons = new List<Person>()
             {

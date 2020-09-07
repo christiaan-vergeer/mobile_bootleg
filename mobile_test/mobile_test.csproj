@@ -14,10 +14,22 @@
     <Compile Update="Views\accountPage.xaml.cs">
       <DependentUpon>accountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\NewPerson.xaml.cs">
+      <DependentUpon>NewPerson.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\PersonalDetail.xaml.cs">
+      <DependentUpon>PersonalDetail.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Views\accountPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewPerson.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PersonalDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

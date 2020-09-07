@@ -5,12 +5,40 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:mobile_test.ViewModels"  
              xmlns:model="clr-namespace:mobile_test.Models"  
-             x:Name="BrowsePersonsPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Name="BrowseAccountPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddPersonCommand}" />
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:accountPageViewModel" Command="{Binding LoadPersonsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="PersonsListView"
+                ItemsSource="{Binding Persons}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:Person">
+                        <Label Text="{Binding FirstName}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListPersonFirstnameStyle}" 
+                            FontSize="16" />
+                        <Label Text="{Binding Age}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListPersonAgeTextStyle}"
+                            FontSize="13" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:accountPageViewModel}}, Path=PersonTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 </ContentPage>
