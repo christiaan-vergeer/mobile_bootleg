@@ -16,7 +16,7 @@ namespace mobile_test.Services
             persons = new List<Person>()
             {
                 new Person { Id = Guid.NewGuid().ToString(), Age = 18, FirstName="Belle", LastName="Bell", Bio="Ik hou van bellen.", gender=Gender.Female, prefference=Prefference.Female},
-                new Person { Id = Guid.NewGuid().ToString(), Age = 19, FirstName="Dum", LastName="Dumber", Bio="Ik Ben niet zo slim.", gender=Gender.Male, prefference=Prefference.Female}, 
+                new Person { Id = Guid.NewGuid().ToString(), Age = 19, FirstName="Dum", LastName="Dumber", Bio="Ik Ben niet zo slim.", gender=Gender.Male, prefference=Prefference.Female},
                 new Person { Id = Guid.NewGuid().ToString(), Age = 21, FirstName="Ambie", LastName="Bambie", Bio="Boe!", gender= Gender.Female, prefference=Prefference.Male},
                 new Person { Id = Guid.NewGuid().ToString(), Age = 41, FirstName="Midlife", LastName="Crisis", Bio="Ik heb een veels te dure sport auto.", gender=Gender.Male, prefference=Prefference.Female},
                 new Person { Id = Guid.NewGuid().ToString(), Age = 26, FirstName="Bier", LastName="Brouwer", Bio="Ik houdt van bier.", gender=Gender.Male, prefference=Prefference.Female},
@@ -58,5 +58,7 @@ namespace mobile_test.Services
         {
             return await Task.FromResult(persons);
         }
+
+
     }
 }
