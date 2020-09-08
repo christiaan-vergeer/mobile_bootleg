@@ -8,6 +8,7 @@ namespace mobile_test.Views
     {
         public ItemDetailPage()
         {
+            InitializeComponent();
             BindingContext = new ItemDetailViewModel();
         }
     }

@@ -18,6 +18,7 @@ namespace mobile_test.Views
         PersonDetailViewModel _viewModel;
         public PersonalDetail()
         {
+            InitializeComponent();
             BindingContext = _viewModel = new PersonDetailViewModel();
         }
         protected override void OnAppearing()

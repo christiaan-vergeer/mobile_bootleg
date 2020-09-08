@@ -31,6 +31,30 @@ namespace mobile_test.ViewModels
             set => SetProperty(ref lastName, value);
         }
 
+        public int age
+        {
+            get => Age;
+            set => SetProperty(ref Age, value);
+        }
+
+        public string Bio
+        {
+            get => bio;
+            set => SetProperty(ref bio, value);
+        }
+
+        public string Gender
+        {
+            get => gender;
+            set => SetProperty(ref gender, value);
+        }
+
+        public string Prefference
+        {
+            get => preffrerence;
+            set => SetProperty(ref preffrerence, value);
+        }
+
         public string PersonId
         {
             get
@@ -57,10 +81,10 @@ namespace mobile_test.ViewModels
                 Id = person.Id;
                 FirstName = person.FirstName;
                 LastName = person.LastName;
-                bio = person.Bio;
-                Age = person.Age;
-                gender = person.gender.ToString();
-                preffrerence = person.prefference.ToString();
+                Bio = person.Bio;
+                age = person.Age;
+                Gender = person.gender.ToString();
+                Prefference = person.prefference.ToString();
             }
             catch (Exception)
             {

@@ -17,6 +17,7 @@ namespace mobile_test.Views
         public Person person { get; set; }
         public NewPerson()
         {
+            InitializeComponent();
             BindingContext = new NewPersonView();
         }
     }

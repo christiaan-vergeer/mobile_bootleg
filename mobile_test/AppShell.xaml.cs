@@ -15,7 +15,7 @@ namespace mobile_test
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(accountPage), typeof(accountPage));
             Routing.RegisterRoute(nameof(PersonalDetail), typeof(PersonalDetail));
-            //Routing.RegisterRoute(nameof(NewPerson), typeof(NewPerson));
+            Routing.RegisterRoute(nameof(NewPerson), typeof(NewPerson));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
