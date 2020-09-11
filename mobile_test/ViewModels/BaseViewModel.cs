@@ -52,6 +52,8 @@ namespace mobile_test.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected void RaisePropertyChanged([CallerMemberName] string name = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         #endregion
     }
 }
